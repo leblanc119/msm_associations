@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.all
-    @directors = Director.all
 
     render("movies/index.html.erb")
   end
@@ -28,8 +27,11 @@ class MoviesController < ApplicationController
     @movie.director_id = params[:director_id]
 
     save_status = @movie.save
+    director_redirect = params[:director_redirect].to_i
 
-    if save_status == true
+    if save_status == true && director_redirect== 1
+      redirect_to("/directors/#{@movie.director_id}", :notice => "Movie created successfully.")
+    elsif save_status == true
       redirect_to("/movies/#{@movie.id}", :notice => "Movie created successfully.")
     else
       render("movies/new.html.erb")
