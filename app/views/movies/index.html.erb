@@ -25,7 +25,7 @@
         <td><%= movie.duration %></td>
         <td><%= movie.description %></td>
         <td><%= movie.image_url %></td>
-        <% director_id=movie.director_id.to_i %>
+        <% director_id = movie.director_id.to_i %>
         <% director = Director.find(director_id)%>
         <td><%= director.name %></td>
         <td>
