@@ -19,6 +19,29 @@
 
     </dl>
 
+    <dt>Number of Characters</dt>
+
+    <% characters = Character.all %>
+    <% count = 0 %>
+    <% actors_movies=[] %>
+
+    <% characters.each do |actor_character| %>
+    <% if actor_character.actor_id == @actor.id %>
+    <% actors_movies.push(Movie.find(actor_character.movie_id).title) %>
+    <% count = count+1 %>
+    <% end %>
+    <% end %>
+
+    <dd><%= count %></dd>
+
+    <dt>Filmography</dt>
+    <% characters.each do |actor_character| %>
+    <% if actor_character.actor_id == @actor.id %>
+    <dd><%= Movie.find(actor_character.movie_id).title %></dd>
+    <% end %>
+    <% end %>
+
+
     <div class="btn-group btn-group-justified">
       <a href="/actors" class="btn btn-primary">
         Back
