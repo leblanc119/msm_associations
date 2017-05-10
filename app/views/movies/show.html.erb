@@ -23,6 +23,15 @@
       <dt>Director</dt>
       <dd><%= Director.find(@movie.director_id).name %></dd>
 
+      <dt>Actors</dt>
+      <% @characters = Character.all  %>
+      <% @characters.each do |character|%>
+      <% if character.movie_id == @movie.id  %>
+      <% actor_id = character.actor_id %>
+      <dd><%= Actor.find(actor_id).name %></dd>
+      <% end %>
+      <% end %>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
